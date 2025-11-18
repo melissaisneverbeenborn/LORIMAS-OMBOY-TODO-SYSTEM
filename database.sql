@@ -1,0 +1,21 @@
+CREATE DATABASE IF NOT EXISTS todo_app;
+USE todo_app;
+
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(100) UNIQUE,
+  email VARCHAR(100) UNIQUE,
+  password VARCHAR(255),
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE todos (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT,
+  title VARCHAR(255),
+  description TEXT,
+  dueDate DATE,
+  completed BOOLEAN DEFAULT 0,
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
